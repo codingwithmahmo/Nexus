@@ -36,6 +36,7 @@ import { DealsPage } from "./pages/deals/DealsPage";
 import { ChatPage } from "./pages/chat/ChatPage";
 import { CalendarPage } from "./pages/calender/CalenderPage";
 import { VideoCallPage } from "./pages/videocall/VideoCall";
+import { SecurityPage } from "./pages/security/SecurityPage";
 
 function App() {
   return (
@@ -106,11 +107,17 @@ function App() {
 
           {/* Catch all other routes and redirect to login */}
           <Route path="*" element={<Navigate to="/login" replace />} />
-          
+
           {/* Video Call Route */}
           <Route path="/videocall" element={<DashboardLayout />}>
             <Route index element={<VideoCallPage />} />
           </Route>
+
+          {/* Security Route */}
+          <Route path="/security" element={<DashboardLayout />}>
+            <Route index element={<SecurityPage />} />
+          </Route>
+          
         </Routes>
       </Router>
     </AuthProvider>

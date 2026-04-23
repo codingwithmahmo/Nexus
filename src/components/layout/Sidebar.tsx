@@ -47,6 +47,7 @@ export const Sidebar: React.FC = () => {
     { to: '/documents', icon: <FileText size={20} />, text: 'Documents' },
     { to: '/calendar', icon: <Calendar size={20} />, text: 'Calendar' },
     { to: '/videocall', icon: <PhoneCall size={20} />, text: 'Video Call' },
+    { to: '/security', icon: <Settings size={20} />, text: 'Security' },
   ];
   
   const investorItems = [
@@ -57,6 +58,7 @@ export const Sidebar: React.FC = () => {
     { to: '/notifications', icon: <Bell size={20} />, text: 'Notifications' },
     { to: '/deals', icon: <FileText size={20} />, text: 'Deals' },
     { to: '/videocall', icon: <PhoneCall size={20} />, text: 'Video Call' },
+    { to: '/security', icon: <Settings size={20} />, text: 'Security' },
   ];
   
   const sidebarItems = user.role === 'entrepreneur' ? entrepreneurItems : investorItems;
@@ -65,6 +67,7 @@ export const Sidebar: React.FC = () => {
   const commonItems = [
     { to: '/settings', icon: <Settings size={20} />, text: 'Settings' },
     { to: '/help', icon: <HelpCircle size={20} />, text: 'Help & Support' },
+    { to: '/security', icon: <Settings size={20} />, text: 'Security' },
   ];
   
   return (
