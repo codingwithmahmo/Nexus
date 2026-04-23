@@ -52,12 +52,12 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
-  
+
   return (
     <AuthProvider>
       {isAppLoading ? (
         <LoadingPage 
-          duration={10000} 
+          duration={5000} 
           onLoadingComplete={() => setIsAppLoading(false)}
         />
       ) : (
