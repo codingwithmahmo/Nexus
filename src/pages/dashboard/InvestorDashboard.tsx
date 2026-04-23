@@ -68,7 +68,7 @@ export const InvestorDashboard: React.FC = () => {
       </div>
       
       {/* Filters and search */}
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-4 ">
         <div className="w-full md:w-2/3">
           <Input
             placeholder="Search startups, industries, or keywords..."
@@ -76,6 +76,7 @@ export const InvestorDashboard: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             fullWidth
             startAdornment={<Search size={18} />}
+            className = 'tracking-wide'
           />
         </div>
         
