@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -38,88 +38,109 @@ import { CalendarPage } from "./pages/calender/CalenderPage";
 import { VideoCallPage } from "./pages/videocall/VideoCall";
 import { SecurityPage } from "./pages/security/SecurityPage";
 
+// Loading Page
+import { LoadingPage } from "./pages/loading/LoadingPage";
+
 function App() {
+  const [isAppLoading, setIsAppLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate app initialization (you can replace this with actual data loading)
+    const timer = setTimeout(() => {
+      setIsAppLoading(false);
+    }, 10000); // 10 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Authentication Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+      {isAppLoading ? (
+        <LoadingPage 
+          duration={10000} 
+          onLoadingComplete={() => setIsAppLoading(false)}
+        />
+      ) : (
+        <Router>
+          <Routes>
+            {/* Authentication Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
-          {/* Dashboard Routes */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
-            <Route path="investor" element={<InvestorDashboard />} />
-          </Route>
+            {/* Dashboard Routes */}
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
+              <Route path="investor" element={<InvestorDashboard />} />
+            </Route>
 
-          {/* Profile Routes */}
-          <Route path="/profile" element={<DashboardLayout />}>
-            <Route path="entrepreneur/:id" element={<EntrepreneurProfile />} />
-            <Route path="investor/:id" element={<InvestorProfile />} />
-          </Route>
+            {/* Profile Routes */}
+            <Route path="/profile" element={<DashboardLayout />}>
+              <Route path="entrepreneur/:id" element={<EntrepreneurProfile />} />
+              <Route path="investor/:id" element={<InvestorProfile />} />
+            </Route>
 
-          {/* Feature Routes */}
-          <Route path="/investors" element={<DashboardLayout />}>
-            <Route index element={<InvestorsPage />} />
-          </Route>
+            {/* Feature Routes */}
+            <Route path="/investors" element={<DashboardLayout />}>
+              <Route index element={<InvestorsPage />} />
+            </Route>
 
-          <Route path="/entrepreneurs" element={<DashboardLayout />}>
-            <Route index element={<EntrepreneursPage />} />
-          </Route>
+            <Route path="/entrepreneurs" element={<DashboardLayout />}>
+              <Route index element={<EntrepreneursPage />} />
+            </Route>
 
-          <Route path="/messages" element={<DashboardLayout />}>
-            <Route index element={<MessagesPage />} />
-          </Route>
+            <Route path="/messages" element={<DashboardLayout />}>
+              <Route index element={<MessagesPage />} />
+            </Route>
 
-          <Route path="/notifications" element={<DashboardLayout />}>
-            <Route index element={<NotificationsPage />} />
-          </Route>
+            <Route path="/notifications" element={<DashboardLayout />}>
+              <Route index element={<NotificationsPage />} />
+            </Route>
 
-          <Route path="/documents" element={<DashboardLayout />}>
-            <Route index element={<DocumentsPage />} />
-          </Route>
+            <Route path="/documents" element={<DashboardLayout />}>
+              <Route index element={<DocumentsPage />} />
+            </Route>
 
-          <Route path="/settings" element={<DashboardLayout />}>
-            <Route index element={<SettingsPage />} />
-          </Route>
+            <Route path="/settings" element={<DashboardLayout />}>
+              <Route index element={<SettingsPage />} />
+            </Route>
 
-          <Route path="/help" element={<DashboardLayout />}>
-            <Route index element={<HelpPage />} />
-          </Route>
+            <Route path="/help" element={<DashboardLayout />}>
+              <Route index element={<HelpPage />} />
+            </Route>
 
-          <Route path="/deals" element={<DashboardLayout />}>
-            <Route index element={<DealsPage />} />
-          </Route>
+            <Route path="/deals" element={<DashboardLayout />}>
+              <Route index element={<DealsPage />} />
+            </Route>
 
-          <Route path="/calendar" element={<DashboardLayout />}>
-            <Route index element={<CalendarPage />} />
-          </Route>
+            <Route path="/calendar" element={<DashboardLayout />}>
+              <Route index element={<CalendarPage />} />
+            </Route>
 
-          {/* Chat Routes */}
-          <Route path="/chat" element={<DashboardLayout />}>
-            <Route index element={<ChatPage />} />
-            <Route path=":userId" element={<ChatPage />} />
-          </Route>
+            {/* Chat Routes */}
+            <Route path="/chat" element={<DashboardLayout />}>
+              <Route index element={<ChatPage />} />
+              <Route path=":userId" element={<ChatPage />} />
+            </Route>
 
-          {/* Redirect root to login */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
+            {/* Redirect root to login */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
 
-          {/* Catch all other routes and redirect to login */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+            {/* Catch all other routes and redirect to login */}
+            <Route path="*" element={<Navigate to="/login" replace />} />
 
-          {/* Video Call Route */}
-          <Route path="/videocall" element={<DashboardLayout />}>
-            <Route index element={<VideoCallPage />} />
-          </Route>
+            {/* Video Call Route */}
+            <Route path="/videocall" element={<DashboardLayout />}>
+              <Route index element={<VideoCallPage />} />
+            </Route>
 
-          {/* Security Route */}
-          <Route path="/security" element={<DashboardLayout />}>
-            <Route index element={<SecurityPage />} />
-          </Route>
-          
-        </Routes>
-      </Router>
+            {/* Security Route */}
+            <Route path="/security" element={<DashboardLayout />}>
+              <Route index element={<SecurityPage />} />
+            </Route>
+            
+          </Routes>
+        </Router>
+      )}
     </AuthProvider>
   );
 }
